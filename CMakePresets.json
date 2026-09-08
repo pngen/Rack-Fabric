@@ -1,0 +1,81 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "release",
+      "inherits": "base",
+      "displayName": "Release (library, tools, tests, examples, benchmarks)",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "RACK_FABRIC_BUILD_TESTS": "ON",
+        "RACK_FABRIC_WARNINGS_AS_ERRORS": "ON",
+        "RACK_FABRIC_ENABLE_CUDA": "ON"
+      }
+    },
+    {
+      "name": "debug",
+      "inherits": "base",
+      "displayName": "Debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "RACK_FABRIC_BUILD_TESTS": "ON",
+        "RACK_FABRIC_WARNINGS_AS_ERRORS": "ON",
+        "RACK_FABRIC_ENABLE_CUDA": "ON"
+      }
+    },
+    {
+      "name": "asan",
+      "inherits": "base",
+      "displayName": "Debug with AddressSanitizer",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "RACK_FABRIC_BUILD_TESTS": "ON",
+        "RACK_FABRIC_ENABLE_ASAN": "ON",
+        "RACK_FABRIC_ENABLE_CUDA": "OFF"
+      }
+    },
+    {
+      "name": "no-cuda",
+      "inherits": "base",
+      "displayName": "Release without the CUDA module",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "RACK_FABRIC_BUILD_TESTS": "ON",
+        "RACK_FABRIC_ENABLE_CUDA": "OFF"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "release", "configurePreset": "release" },
+    { "name": "debug", "configurePreset": "debug" },
+    { "name": "asan", "configurePreset": "asan" },
+    { "name": "no-cuda", "configurePreset": "no-cuda" }
+  ],
+  "testPresets": [
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "output": { "outputOnFailure": true },
+      "execution": { "noTestsAction": "error" }
+    },
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "output": { "outputOnFailure": true },
+      "execution": { "noTestsAction": "error" }
+    }
+  ]
+}

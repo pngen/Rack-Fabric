@@ -1,0 +1,13 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+if(NOT TARGET rack_fabric::rack_fabric)
+  include("${CMAKE_CURRENT_LIST_DIR}/rack_fabricTargets.cmake")
+endif()
+
+set(RACK_FABRIC_VERSION "@PROJECT_VERSION@")
+set(RACK_FABRIC_CUDA_AVAILABLE "@RACK_FABRIC_CUDA_AVAILABLE@")
+set(RACK_FABRIC_LICENSE "Apache-2.0")
+
+check_required_components(rack_fabric)

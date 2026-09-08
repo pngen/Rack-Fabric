@@ -1,0 +1,43 @@
+# Build trees. Nothing generated is committed.
+build/
+build-*/
+out/
+cmake-build-*/
+CMakeUserPresets.json
+
+# Compiler, linker and test artefacts.
+*.obj
+*.o
+*.lib
+*.exp
+*.pdb
+*.ilk
+*.log
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.ninja
+.ninja_deps
+.ninja_log
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+*.vcxproj*
+*.sln
+
+# Local state files written by the tools and examples.
+*.rkf
+*-out.txt
+mp-out.txt
+unit-out.txt
+
+# Editor and OS noise.
+.vs/
+.vscode/
+.idea/
+*.user
+Thumbs.db
+desktop.ini
